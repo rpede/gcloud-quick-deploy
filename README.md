@@ -70,7 +70,8 @@ Let's fix it.
 
 Create a new secret with your connection string.
 
-If your connection string starts with `postgres://` or `jdbc:postgresql://`, then you need to convert it to .NET format using my [Connection-string
+If your connection string starts with `postgres://` or `jdbc:postgresql://`,
+then you need to convert it to .NET format using my [Connection-string
 Converter](https://rpede.github.io/connection_strings/).
 
 Next you need to update your failed deployment.
@@ -91,6 +92,22 @@ Here is an example:
 ![Example of setting a secret](./set-secret.png)
 
 _Note: Adjust the names to what you have_
+
+If you still get a permission error like this:
+
+![Permission denied on secret](./secret-permission-error.png)
+
+[**Go to IAM**](https://console.cloud.google.com/iam-admin/iam)
+
+Find the account with the name from the error and click "Edit principal".
+
+![Edit principal under Permissions for project ](./edit-principal.png)
+
+Then add the "Secret Manager Secret Accessor" role and "Save".
+
+![Adding secret accessor role](./edit-access.png)
+
+Deploy a new revision as before.
 
 🤞 your back-end should start.
 
